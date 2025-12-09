@@ -1,0 +1,10 @@
+services:
+  tunnel:
+    container_name: cloudflared
+    restart: unless-stopped
+    image: cloudflare/cloudflared
+    command: tunnel run
+    environment:
+      - TUNNEL_TOKEN= #key
+    networks:
+      - proxy

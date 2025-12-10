@@ -1,0 +1,5 @@
+WARNING: please DO NOT deploy websites using Terraform.
+
+Why? Cloudflare's terraform platform DO NOT support Git integration for
+workers, leading us to use old Cloudflare Pages to deploy websites. It leads to
+incompatiblities and bugs. Please deploy using Cloudflare Dashboard.

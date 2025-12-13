@@ -16,7 +16,7 @@ services:
       - telemetry
 
   prometheus:
-    image: prom/prometheus:v3.6.0
+    image: prom/prometheus:v3.8.0
     restart: unless-stopped
     container_name: prometheus
     command: --config.file=/etc/prometheus/prometheus.yaml
@@ -33,8 +33,6 @@ services:
     restart: unless-stopped
     container_name: loki
     command: -config.file=/etc/loki/local-config.yaml
-    depends_on:
-      - promtail
     expose:
       - 3100
     volumes:
@@ -47,9 +45,11 @@ services:
     image: grafana/promtail:3.5
     restart: unless-stopped
     container_name: promtail
+    depends_on:
+      - loki
     command: -config.file=/etc/promtail/config.yaml
     volumes:
-      - /var/log:/var/log
+      - nginx_logs:/var/log/nginx/logs_nginx:ro
       - ../config/telemetry/promtail.yaml:/etc/promtail/config.yaml
     networks:
       - telemetry

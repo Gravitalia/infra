@@ -12,7 +12,6 @@ services:
       - database
       - news
 
-
 networks:
   news:
     driver: bridge

@@ -1,6 +1,6 @@
 services:
   discovery:
-    image: ghcr.io/turmsapp/discovery:0.1.2
+    image: ghcr.io/turmsapp/discovery:0.1.4
     restart: unless-stopped
     container_name: discovery
     depends_on:
